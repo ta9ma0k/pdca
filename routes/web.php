@@ -11,6 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
+Auth::routes();
+
 Route::get('/', function () {
     return view('home');
+});
+
+Route::group(['middleware'=>'auth'], function () {
+    Route::get('/reports', function () {
+        return view('report_list');
+    });
 });
