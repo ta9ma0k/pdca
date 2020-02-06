@@ -40,12 +40,4 @@ class User extends Authenticatable
 
     public $incrementing = false;
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->{$model->getKeyName()} = Uuid::generate()->string;
-        });
-    }
 }
