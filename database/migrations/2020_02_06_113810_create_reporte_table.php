@@ -17,10 +17,6 @@ class CreateReporteTable extends Migration
             $table->char('id', 26)->primary();
             $table->integer('user_id')->unsigned();
             $table->date('date');
-            $table->string('goal');
-            $table->string('good_point')->nullable();
-            $table->string('bad_point')->nullable();
-            $table->string('next_action')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -34,6 +30,10 @@ class CreateReporteTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('goals');
+        Schema::dropIfExists('actions');
+        Schema::dropIfExists('reviews');
+
         Schema::dropIfExists('reports');
     }
 }

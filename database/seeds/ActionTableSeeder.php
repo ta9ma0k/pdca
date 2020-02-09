@@ -2,9 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class ReportsTableSeeder extends Seeder
+class ActionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,28 +12,26 @@ class ReportsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('reports')->insert([
+        DB::table('actions')->insert([
             [
-                'id' => "K0JY0RBVZGXWXW4F",
-                'user_id' => 1,
-                'date' => Carbon::parse('2020-01-05'),
+                'report_id'=>"K0JY0RBVZGXWXW4F",
+                'detail'=>'時間を測って作業する',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'id' => "K0JY0RBVZGXWXW4G",
-                'user_id' => 1,
-                'date' => Carbon::parse('2020-01-06'),
+                'report_id'=>"K0JY0RBVZGXWXW4G",
+                'detail'=>'決めた時間で分からなければ質問する',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'id' => "K0JY0RBVZGXWXW4H",
-                'user_id' => 1,
-                'date' => Carbon::parse('2020-01-07'),
+                'report_id'=>"K0JY0RBVZGXWXW4H",
+                'detail'=>'',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
         ]);
+
     }
 }

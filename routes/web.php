@@ -20,7 +20,5 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware'=>'auth'], function () {
-    Route::get('/reports', function () {
-        return view('report_list');
-    });
+    Route::get('/reports', 'ShowReportList');
 });
