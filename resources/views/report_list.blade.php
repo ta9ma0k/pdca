@@ -1,5 +1,10 @@
 @extends('layout.parent')
 
 @section('content')
-    <h1>Login!!!</h1>
+
+    <ul>
+    @foreach($reports as $report)
+        <li>{{ $report->date }}</li>
+    @endforeach
+    </ul>
 @endsection
