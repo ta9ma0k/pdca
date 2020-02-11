@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskTable extends Migration
+class CreateReviewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->char('id', 26)->primary();
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->increments('id');
             $table->char('report_id', 26);
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->string('detail');
-            $table->string('result')->nullable();
-            $table->foreign('report_id')->references('id')->on('reports');
+            $table->integer('type');
+            $table->string('detail')->nullable();
             $table->timestamps();
+
+            $table->foreign('report_id')->references('id')->on('reports');
         });
     }
 
@@ -32,6 +31,5 @@ class CreateTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('folders');
     }
 }
