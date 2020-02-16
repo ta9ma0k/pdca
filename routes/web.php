@@ -21,4 +21,5 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>'auth'], function () {
     Route::get('/reports', 'ShowReportList');
+    Route::get('/reports/{id}', 'ShowReportDetail')->name('report.detail');
 });

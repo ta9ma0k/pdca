@@ -3,39 +3,43 @@
 namespace Tests\Feature\infrastructure\query;
 
 use App\infrastructure\eloquent\Report;
-use App\infrastructure\query\ReportQueryService;
+use App\infrastructure\query\ReportListQueryService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
-class ReportQueryServiceTest extends TestCase
+class ReportListQueryServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @var ReportQueryService */
+    /** @var ReportListQueryService */
     private $sut;
 
     protected function setUp(): void
     {
         parent::setUp();
+        Artisan::call('migrate:refresh');
         $this->seed('UsersTableSeeder');
         $this->seed('ReportsTableSeeder');
 
-        $this->sut = new ReportQueryService(new Report());
+        $this->sut = new ReportListQueryService(new Report());
     }
 
     /**
+     * @test
      * 対象ユーザーのレポートが存在する場合、すべてのレポート（一覧表示用クラス）を返却すること
      */
-    public function test_get_3reports()
+    public function get_3reports()
     {
         $result = $this->sut->findByUserId(1);
         $this->assertTrue(count($result) === 3);
     }
 
     /**
+     * @test
      * 対象ユーザーのレポートが存在しない場合、空の配列を返却すること
      */
-    public function test_not_get_report()
+    public function not_get_report()
     {
         $result = $this->sut->findByUserId(2);
         $this->assertTrue(empty($result));

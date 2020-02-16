@@ -23,5 +23,6 @@ class ReportQueryModel
         return $this->date->format('Y/m/d');
     }
 
+    public function id() { return $this->id; }
 
 }

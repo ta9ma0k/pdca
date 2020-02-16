@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\infrastructure\query\ReportQueryService;
+use App\infrastructure\query\ReportListQueryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -10,23 +10,22 @@ use Illuminate\View\View;
 class ShowReportList extends Controller
 {
 
-    /** @var ReportQueryService */
-    private $reportQueryService;
+    /** @var ReportListQueryService */
+    private $reportListQueryService;
 
-    public function __construct(ReportQueryService $reportQueryService)
+    public function __construct(ReportListQueryService $reportQueryService)
     {
-        $this->reportQueryService = $reportQueryService;
+        $this->reportListQueryService = $reportQueryService;
     }
 
     /**
      * Handle the incoming request.
      *
-     * @param Request $request
      * @return View
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $reports = $this->reportQueryService->findByUserId(Auth::user()->id);
+        $reports = $this->reportListQueryService->findByUserId(Auth::user()->id);
         return view('report_list', ['reports' => $reports]);
     }
 }

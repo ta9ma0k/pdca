@@ -7,7 +7,7 @@ namespace App\infrastructure\query;
 use App\infrastructure\eloquent\Report;
 use Carbon\Carbon;
 
-class ReportQueryService
+class ReportListQueryService
 {
     /** @var Report */
     private $reportEloquent;

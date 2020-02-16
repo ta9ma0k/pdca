@@ -13,7 +13,9 @@
                     </div>
                     <div class="list-group">
                         @foreach($reports as $report)
-                            <a href="#" class="list-group-item">{{ $report->formatDate() }}</a>
+                            <a href="{{ route('report.detail', ['id' => $report->id() ]) }}" class="list-group-item">
+                                {{ $report->formatDate() }}
+                            </a>
                         @endforeach
                     </div>
                 </nav>
